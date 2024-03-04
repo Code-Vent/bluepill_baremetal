@@ -18,8 +18,8 @@ mcu::port::pin_def tx = {
 
 int main() {
 	using namespace mcu::peripheral;
-	Uart1.init(mcu::uart::Option::UART, 115200);
 	PortB.init({ rx, tx });
+	Uart1.init(mcu::uart::Option::UART, 115200);	
 	mcu::bootloader bl;
 	for (;;) {
 		bl.load_and_run_bin_file(32);
