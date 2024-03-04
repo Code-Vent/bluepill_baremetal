@@ -44,5 +44,6 @@ namespace mcu {
 	namespace fstream {
 		extern io_base debug;
 		extern io_base swo;
+		extern io_base wifi;
 	}
 }

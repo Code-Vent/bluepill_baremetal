@@ -50,3 +50,4 @@ void mcu::_read(size_t fd, char& ch) {
 
 mcu::io_base mcu::fstream::debug(1);
 mcu::io_base mcu::fstream::swo(2);
+mcu::io_base mcu::fstream::wifi(3);

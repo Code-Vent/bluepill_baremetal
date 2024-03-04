@@ -9,7 +9,7 @@ add_library(
   "core_nvic.cpp" "core_time.cpp" 
   "driver_port.cpp" "common_defs.cpp" 
   "driver_adc.cpp" "driver_timer.cpp"
- "app_pwm.cpp" "driver_spi.cpp" "app_stream.cpp" "driver_flash.cpp" "app_bootloader.cpp")
+ "app_pwm.cpp" "driver_spi.cpp" "app_stream.cpp" "driver_flash.cpp" "app_bootloader.cpp" "driver_wifi.cpp")
 
 target_include_directories(
 	cortexm3
