@@ -1,17 +1,27 @@
 #include"app/bootloader.h"
 #include"app/stream.h"
+#include"core/system.h"
 
-void mcu::bootloader::load(uint8_t page) {
-	loader(page);
+void mcu::bootloader::load_bin_file(uint8_t page) {
+	bin_file_loader(page);
 }
 
-void mcu::bootloader::load_and_run(uint8_t page) {
-	loader(page);
+void mcu::bootloader::load_and_run_bin_file(uint8_t page) {
+	uint32_t vector_address = 0x08000000 + (page * 1024);
+	bin_file_loader(page);
 	//set vector table offset
+	auto scb = mcu::system::get_instance().get_control_block();
+	scb.set_vector_table_offset(vector_address);
 	//jump to entry routine
+	jump_to_start(vector_address + 4);
 }
 
-bool mcu::bootloader::loader(uint8_t page) {
+void mcu::bootloader::jump_to_start(uint32_t start) {
+	__asm__ volatile("mov lr, r0");
+	__asm__ volatile("bx lr");
+}
+
+bool mcu::bootloader::bin_file_loader(uint8_t page) {
 	char ch;
 	while (mcu::fstream::debug >> ch) {
 		mcu::peripheral::Flash.write(ch);

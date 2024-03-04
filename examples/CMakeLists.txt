@@ -6,8 +6,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(
 	${EXECUTABLE}
 ##	uart_test.cpp
- "gpio_test.cpp"
-)
+ ##"gpio_test.cpp"
+ "bootloader_test.cpp")
 
 target_link_libraries(
 	${EXECUTABLE}

@@ -21,7 +21,7 @@ namespace mcu {
 	private:
 		static constexpr size_t MAX_SIZE = 1024;
 		static constexpr size_t MAX_PAGE_NUM = 63;
-		static constexpr size_t MIN_PAGE_NUM = 32;
+		static constexpr size_t MIN_PAGE_NUM = 24;
 		static constexpr uint32_t KEY1 = 0x45670123;
 		static constexpr uint32_t KEY2 = 0xCDEF89AB;
 		static constexpr uint32_t FLASH_SR_BUSY = UINT32_C(1);

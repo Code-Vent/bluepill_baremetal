@@ -9,9 +9,10 @@
 namespace mcu {
 	class bootloader {
 	public:
-		void load(uint8_t page);
-		void load_and_run(uint8_t page);
+		void load_bin_file(uint8_t page);
+		void load_and_run_bin_file(uint8_t page);
 	private:
-		bool loader(uint8_t page);
+		bool bin_file_loader(uint8_t page);
+		void jump_to_start(uint32_t start);
 	};
 }

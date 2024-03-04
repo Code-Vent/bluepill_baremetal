@@ -27,6 +27,10 @@ mcu::flash::flash(Base_Address address, mcu::sys_clock::Bridge bridge, uint8_t c
 	device = reinterpret_cast<flash_registers*>(address);
 }
 
+mcu::flash::~flash() {
+
+}
+
 bool mcu::flash::flush(uint8_t page) {
 	if (length == 0)return false;
 	if (page < MIN_PAGE_NUM || page > MAX_PAGE_NUM) return false;

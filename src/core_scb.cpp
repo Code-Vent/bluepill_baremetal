@@ -49,5 +49,5 @@ void sys_control_block::mem_manage_fault() {
 }
 
 void sys_control_block::set_vector_table_offset(uint32_t offset) {
-
+	scb->VTOR = offset;
 }
