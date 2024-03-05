@@ -44,7 +44,7 @@ add_custom_command(TARGET ${EXECUTABLE} POST_BUILD
     COMMAND ${CMAKE_OBJCOPY} -O ihex $<TARGET_FILE:${EXECUTABLE}> ${EXECUTABLE}.hex
     COMMAND ${CMAKE_OBJCOPY} -O binary $<TARGET_FILE:${EXECUTABLE}> ${EXECUTABLE}.bin
     COMMAND "openocd" -f "board/stm32f103c8_blue_pill.cfg"
-    COMMAND post_build
+   ## COMMAND cmd post_build.bat
 )
 
 option(DUMP_ASM "Create full assembly of final executable" OFF)
