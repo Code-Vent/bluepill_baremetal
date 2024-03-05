@@ -1,6 +1,7 @@
 #pragma once
 
-#include"../drivers/uart.h"
+#include"drivers/uart.h"
+#include"drivers/wifi.h"
 #include<string>
 #include<stdlib.h>
 #include<string.h>

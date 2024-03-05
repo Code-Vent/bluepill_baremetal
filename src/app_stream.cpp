@@ -13,26 +13,43 @@ mcu::io_base& mcu::io_base::operator<<(const char* str) {
 }
 
 mcu::io_base& mcu::io_base::operator>>(char& ch) {
+	_read(fd, ch);
 	return *this;
 }
 
 mcu::io_base::operator bool() {
-	return mcu::peripheral::Uart1;
+	bool status = false;
+	switch (fd) {
+	case 1:
+		status = mcu::peripheral::Uart1;
+		break;
+	case 2:
+		break;
+	case 3:
+		status = wifi::Esp8266;
+		break;
+	default:
+		break;
+	}
+	return status;
 }
 
 
 void mcu::_write(size_t fd, const char* str, size_t len) {
-	switch (fd) {
-	case 1:
-		for (int i = 0; i < len; ++i)
-		{
+	for (int i = 0; i < len; ++i)
+	{
+		switch (fd) {
+		case 1:
 			mcu::peripheral::Uart1.put(str[i]);
+			break;
+		case 2:
+			break;
+		case 3:
+			wifi::Esp8266.put(str[i]);
+			break;
+		default:
+			break;
 		}
-		break;
-	case 2:
-		break;
-	default:
-		break;
 	}
 }
 
@@ -42,6 +59,9 @@ void mcu::_read(size_t fd, char& ch) {
 		mcu::peripheral::Uart1.get(ch);
 		break;
 	case 2:
+		break;
+	case 3:
+		wifi::Esp8266.get(ch);
 		break;
 	default:
 		break;
