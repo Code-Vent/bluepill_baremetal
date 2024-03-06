@@ -17,15 +17,14 @@ void mcu::bootloader::load_and_run_bin_file(uint8_t page, io_base& io) {
 }
 
 void mcu::bootloader::jump_to_start(uint32_t start) {
-	__asm__ volatile("mov lr, r0");
-	__asm__ volatile("bx lr");
+	__asm__ volatile("BX R0");
 }
 
 bool mcu::bootloader::bin_file_loader(uint8_t page, io_base& io) {
 	char ch;
 	while (io >> ch) {
 		mcu::peripheral::Flash.write(ch);
-		if (mcu::peripheral::Flash.eof()) {
+		if (mcu::peripheral::Flash.end_of_page()) {
 			bool r = mcu::peripheral::Flash.flush(page++);
 			if (!r)return false;
 		}

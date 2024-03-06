@@ -56,7 +56,7 @@ void mcu::flash::write(uint8_t byte) {
 	return;
 }
 
-bool mcu::flash::eof() {
+bool mcu::flash::end_of_page() {
 	return length >= MAX_SIZE;
 }
 
