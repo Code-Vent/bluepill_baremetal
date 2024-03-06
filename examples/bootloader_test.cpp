@@ -22,6 +22,8 @@ int main() {
 	Uart1.init(mcu::uart::Option::UART, 115200);	
 	mcu::bootloader bl;
 	for (;;) {
-		bl.load_and_run_bin_file(32, mcu::fstream::debug);
+		//bl.load_and_run_bin_file(32, mcu::fstream::debug);
+
+		bl.load_and_run_bin_file(32, (mcu::fstream::wifi >> wifi::endpiont("bin/files")));
 	}
 }

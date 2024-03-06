@@ -6,16 +6,22 @@
 
 
 namespace wifi {
+	struct endpiont {
+		endpiont(const char* url);
+		uint32_t operator()();
+	};
+
 	class esp8266 {
 	public:
-		esp8266(uint32_t baud_rate);
-		void conn();//establish connection
+		esp8266();
 		operator bool();
 		bool put(char ch);
 		bool get(char& ch);
+		esp8266& operator>>(endpiont);
+		void change_baud_rate(uint32_t baud_rate);
 	private:
-		static constexpr uint8_t BUF_SIZE = 50;
-		char at_cmd[BUF_SIZE];
+		void conn();//establish connection
+		uint32_t received_data_length;
 	};
 
 	extern esp8266 Esp8266;

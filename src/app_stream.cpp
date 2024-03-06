@@ -17,6 +17,11 @@ mcu::io_base& mcu::io_base::operator>>(char& ch) {
 	return *this;
 }
 
+mcu::io_base& mcu::io_base::operator>>(wifi::endpiont e) {
+	wifi::Esp8266 >> e;
+	return *this;
+}
+
 mcu::io_base::operator bool() {
 	bool status = false;
 	switch (fd) {

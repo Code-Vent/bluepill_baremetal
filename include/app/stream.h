@@ -36,6 +36,9 @@ namespace mcu {
 			operator<<(str.c_str());
 			return *this;
 		}
+
+		io_base& operator>>(wifi::endpiont e);
+
 		operator bool();
 	private:
 		size_t fd;
