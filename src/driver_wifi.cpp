@@ -41,7 +41,12 @@ bool wifi::esp8266::put(char ch) {
 }
 
 bool wifi::esp8266::get(char& ch) {
-	return mcu::peripheral::Uart3.get(ch);;
+	if (received_data_length == 0)return false;
+	if (mcu::peripheral::Uart3.get(ch)) {
+		--received_data_length;
+		return true;
+	}
+	return false;
 }
 
 
