@@ -61,6 +61,9 @@ void uart::common_settings(Option opt) {
 	//TX, RX PINS
 	
 	//PCE, PARITY SEL, WAKE, TE, RE, 
+	//1-start-bit, 1-stop-bit
+	//8 data bits
+	//odd parity
 	this->device->CR1 = UINT32_C(0x2604);
 	//STOP BIT, 
 }
@@ -83,18 +86,18 @@ uart::~uart()
 bool uart::put(char ch)
 {
 	bool res = false;
-	device->CR1 |= UINT32_C(1) << 3;
-	if (device->SR & (UINT32_C(1) << 7)) {
+	device->CR1 |= UINT32_C(8);
+	if (device->SR & UINT32_C(128)) {
 		device->DR = UINT32_C(0xFF) & ch;
 		res = true;
 	}
-	device->CR1 &= ~UINT32_C(1) << 3;
+	device->CR1 &= ~UINT32_C(8);
 	return res;
 }
 
 bool uart::get(char& ch)
 {
-	bool rxne = device->SR & (UINT32_C(1) << 5);
+	bool rxne = device->SR & UINT32_C(32);
 	if (rxne) {
 		ch = static_cast<char>(device->DR);
 		return true;

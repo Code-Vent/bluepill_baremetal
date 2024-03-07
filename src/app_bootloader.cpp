@@ -13,7 +13,8 @@ void mcu::bootloader::load_and_run_bin_file(uint8_t page, io_base& io) {
 	auto scb = mcu::system::get_instance().get_control_block();
 	scb.set_vector_table_offset(vector_address);
 	//jump to entry routine
-	jump_to_start(vector_address + 4);
+	uint32_t entry_point = vector_address + 4;
+	jump_to_start(entry_point);
 }
 
 void mcu::bootloader::jump_to_start(uint32_t start) {
