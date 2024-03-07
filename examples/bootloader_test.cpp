@@ -24,6 +24,6 @@ int main() {
 	for (;;) {
 		//bl.load_and_run_bin_file(32, mcu::fstream::debug);
 
-		bl.load_and_run_bin_file(32, (mcu::fstream::wifi >> wifi::file_server("bin/files")));
+		bl.load_and_run_bin_file(32, (mcu::fstream::wifi >> wifi::file_server("esp8266/bin/files")));
 	}
 }
