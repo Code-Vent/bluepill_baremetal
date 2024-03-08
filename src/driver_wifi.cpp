@@ -8,7 +8,6 @@ static char response[RESPONSE_SIZE];
 wifi::file_server::file_server(const char* f)
 	:filename(nullptr)
 {
-	//send ATcommands to GET from the endpoint
 	//192.168.43.1:33455
 	if (wifi::esp8266::send_at_command("AT+CIPSTART=\"TCP\",\"192.168.43.1\",33455,7200\r\n",
 		response, RESPONSE_SIZE) == wifi::esp8266::Result::OK) {
@@ -17,7 +16,7 @@ wifi::file_server::file_server(const char* f)
 }
 
 uint32_t wifi::file_server::operator()() {
-	//sent ATcommands to receive data from server
+	//send http GET request to server
 	//process response
 	if (filename == nullptr)
 		return 0;
