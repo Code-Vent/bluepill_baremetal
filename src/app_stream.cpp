@@ -17,8 +17,8 @@ mcu::io_base& mcu::io_base::operator>>(char& ch) {
 	return *this;
 }
 
-mcu::io_base& mcu::io_base::operator>>(wifi::endpiont e) {
-	wifi::Esp8266 >> e;
+mcu::io_base& mcu::io_base::operator>>(wifi::file_server fs) {
+	wifi::Esp8266 >> fs;
 	return *this;
 }
 

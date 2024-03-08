@@ -37,7 +37,7 @@ namespace mcu {
 			return *this;
 		}
 
-		io_base& operator>>(wifi::endpiont e);
+		io_base& operator>>(wifi::file_server fs);
 
 		operator bool();
 	private:

@@ -16,7 +16,7 @@ namespace mcu {
 		void* operator new(size_t) = delete;
 		bool flush(uint8_t page);
 		void write(uint8_t byte);
-		bool eof();
+		bool end_of_page();
 		operator bool();
 	private:
 		static constexpr size_t MAX_SIZE = 1024;
